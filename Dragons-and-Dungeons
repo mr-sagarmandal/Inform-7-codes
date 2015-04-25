@@ -1,0 +1,276 @@
+
+The story title is “Dragon and Dungeons”.
+The story author is “Kimberly Burke, Daniel Luehm, Sagar Mandal, and Justin Vuong”.
+The story headline is “Play through the eyes of a dragon..”
+The story description is “Heroes always get to go on an adventure. It’s time for you, a millennium old dragon, to venture beyond your dungeon filled with treasures and corpses. At the beginning of a new day, you’ve decided to visit a nearby wizard to request an exciting change be made to your life.”
+The story creation year is 2015
+
+[Established Variables]
+The event counter is a number that varies.
+The trigger event is a number that varies.
+The cauldron check is a number that varies.
+The chalice check is a number that varies.
+The mushroom check is a number that varies.
+The heart check is a number that varies.
+
+[Established Actions]
+Understand the command "fly" as "go".
+Understand the commands "soar", "glide" as "fly".
+Understand the commands "claw" and "slash" as "attack".
+A thing can be flammable or inflammable. A thing is usually flammable.
+A thing can be weak or strong. A thing is usually weak.
+Firebreathing is an action applying to one visible thing. 
+Understand "breathe fire on [something]" as firebreathing.
+Understand "set fire to [something]" as firebreathing.
+Understand "set [something] on fire" as firebreathing.
+Asking is an action applying to nothing.
+Check firebreathing:
+	if the noun is inflammable, say "You cannot burn this." instead.    
+Carry out firebreathing:
+	now the noun is nowhere;    
+Report firebreathing:
+	say "Your fiery breath chars [the noun] to a crisp leaving only a few smoldering cinders."
+FavorAsking is an action applying to nothing.
+Understand "ask for favor" and "ask for help" and "ask for assistance" and "ask for a favor" as FavorAsking.
+Agreeing is an action applying to nothing.
+Understand "say yes" and "agree" and "yes" as agreeing.
+The block giving rule is not listed in the check giving it to rules.
+Check giving:
+	unless Supply Wizard is happening:
+		say "The Wizard is uninterested." instead.
+Dreaming is an action applying to nothing.
+Understand "look at dream" and "examine dream" and "watch dream" and "dream" as Dreaming.
+		
+[Opening passage]
+When play begins: say "[bold type]Introduction[roman type][line break]The points of jewel-encrusted crowns and dull edges of legendary swords poke incessantly at your stomach as light filters to the Nest. The bed of gold coins slide as you stand for a morning stretch. Today is the day you are going to ask the wizard for a favor and begin your own adventure."
+
+[Rooms and Scenes]
+The Nest is a room. "You look around and see gold. Gold everywhere. From wall to wall, chasm to chasm, the plunder of past battles and kingdoms is piled as high as your own head. The piles holds everything from the swords of mighty warriors to the golden chalice of a powerful king. A rotting chasm is to the west. To the north is the cave entrance."
+
+The Rotting Chasm is west of The Nest. “In the middle of the chasm is a pond, black as night, with the consistency of glue. From it, steam is radiating. Around it, thousands of bodies litter the floor, some fresh, some rotted, all dead. Back east is the Nest.”
+
+The Cave Entrance is north of The Nest. “Behold the entrance to the cave; your dwelling place for the past few centuries. The walls are tall and marred by scorch marks. Shoved to the corner, cracked bones lie dormant collecting dust. To the north is a Clearing from which light filters into your dwelling.”
+
+The Clearing is north of the Cave Entrance. “You are in a clearing and the sun is bright. A forest lies ahead but, it is too thick for you to enter... Perhaps you can fly above them? To the south is the Cave Entrance.”
+
+The Above Forest Path is up of The Clearing. “You’re flying! Though as a dragon, this should not be very surprising. Below you is a Forest to which you cannot descend; however, you can barely make out a path down below. Your sharp eyes follow the path spying a Wizard’s Hut to the north. To the west you can see a grassy clearing.”
+
+The Above Grass Clearing is west of The Above Forest Path. “You fly over a Meadow filled with lush green. Further west you can see the Village.”
+
+The Meadow is down of The Above Grass Clearing. “A grassy meadow filled with different types of plants and other vegetation. The thick trunks of trees line the clearing, barring entrance for man and leaving the meadow untouched by human hands. You see some goats over by a log acting very strange.”
+
+The Above Hut Clearing is north of The Above Forest Path. “You fly above the Wizard’s Hut. Below is his dwelling. A straw roof with a stone chimney puffing out oddly shaped smoke rings. To the south is the Forest.”
+
+The Wizard’s Hut is down of The Above Hut Clearing. “You peer into the Wizard’s Hut. The place is littered with jars and vials, filled to the brim with insects and rodents, both alive and dead. The place reeks of burnt earth.”
+
+[The Wizard Character]
+The Wizard is a man in the Wizard's Hut. "The wizard wears a tattered blue robe with a pointed hat. He appears to be a very old man with a long beard. His hands are gnarled but still skilled, fingers discolored."
+The Wizard carries a Potion.
+
+[Meeting the Wizard Scene]
+Meeting the Wizard is a non-recurring scene.
+Meeting the Wizard begins when the player is in The Wizard’s Hut for 1 turns.
+When Meeting the Wizard begins:
+	say  “After much muttering, the Wizard finally notices you. With a chipper hoot, he exclaims, ‘Ah, finally! I was waiting for you! What can I do for you?'"
+Instead of asking:
+	say "'Do you mean to ask for a favor?'"
+Instead of favorasking:
+	now trigger event is 1.
+Meeting the Wizard ends when the player is in The Wizard’s Hut for 2 turns.
+
+[Asking the Wizard Scene]
+Asking the Wizard is a non-recurring scene.
+Asking the Wizard begins when trigger event is 1.
+When Asking the Wizard begins:
+	say "The Wizard visibly becomes giddier as he bounces forward, 'I have just the thing for you. A potion to loosen one of your scales. By losing a piece of your formidable armor, you will feel ten pounds lighter and won’t be so fatigued when you fly.'[line break]
+	The idea of venturing beyond the feeble village to the new territories sounds very pleasing. The village nearby is poor and filled with tasteless, scrawny people.
+	The Wizard steps closer, 'So, do you agree?'"
+Instead of agreeing:
+	If trigger event is 1, say "Clearly excited by your decision, the Wizard continues, 'All right. You can find the ingredients list in the village library. Bring everything to me when you are done. Now shoo. I have work to do.'”
+Instead of agreeing:
+	If trigger event is 1:
+		now trigger event is 2;
+	Otherwise:
+		say "There's nothing to agree to."
+Asking the Wizard ends when trigger event is 2.
+
+[Supply Wizard scene]
+Supply Wizard is a non-recurring scene.
+Supply Wizard begins when trigger event is 2.
+When Supply Wizard begins:
+	say "The Wizard looks at you expectantly. 'Do you have any items to give me?'”
+After giving Cauldron to Wizard: 
+	say "You give the Iron Cauldron to the Wizard. At spotting the impressive Iron Cauldron you’ve brought, he eagerly hurries inside. When you follow, the Wizard is already hefting his heavy bronze pot off a controlled fire and replaces it with the cauldron you’ve brought him.[line break]
+	The bottom of the metal pot already begins to glow as soon as it touches the flames. Appearing suddenly beside you, the wizard looms over the cauldron. 'Perfect. This will do the job.'”;
+	now cauldron check is 1.
+Instead of giving Golden Book to Wizard:
+	say "The Wizard scrunches his nose at the offered item. 'You should be using that to find the items.'”
+Instead of FavorAsking:
+	say "The Wizard looks at you expectantly. 'When you find the ingredients, bring them to me.'"
+Instead of asking:
+	say "The Wizard looks at you expectantly. 'When you find the ingredients, bring them to me.'"
+After giving Heart of King to Wizard:
+	if cauldron check is 1 and trigger event is 2, say "You give the Heart of a King to the Wizard. After taking the item, he says, 'Good, good. I’ll put this aside for you.'”;
+	if cauldron check is 0 and trigger event is 2, say "You give the Heart of a King to the Wizard. After taking the item, he says, 'Good, good. I’ll put this aside for you. I don’t want to ruin my best Cauldron though with this particularly nasty brew though...'”;
+	now heart check is 1.
+After giving Magic Mushrooms to Wizard:
+	if cauldron check is 1 and trigger event is 2, say "You give the Heart of a King to the Wizard. After taking the item, he says, 'Good, good. I’ll put this aside for you.'”;
+	if cauldron check is 0 and trigger event is 2, say "You give the Magic Mushrooms to the Wizard. After taking the items, he says, 'Good, good. I’ll put this aside for you. I don’t want to ruin my best Cauldron though with this particularly nasty brew though...'";
+	now mushroom check is 1.
+After giving Golden Chalice to Wizard:
+	if cauldron check is 1 and trigger event is 2, say "You give the Golden Chalice to the Wizard. After taking the item, he says, 'Good, good. I’ll put this aside for you.'”;
+	if cauldron check is 0 and trigger event is 2, say "You give the Golden Chalice to the Wizard. After taking the item, he says, 'Good, good. I’ll put this aside for you. I don’t want to ruin my best Cauldron though with this particularly nasty brew though...'”;
+	now chalice check is 1.
+Supply Wizard ends when cauldron check is 1 and heart check is 1 and mushroom check is 1 and chalice check is 1.
+
+[Brewing Scene]
+The Potion is a thing.
+Brewing is a non-recurring scene.
+Brewing begins when Supply Wizard ends.
+When Brewing begins:
+	say "The Wizard brings forth all the items you’ve gathered. 'All right. It looks like we are ready.' After dropping each item into the concoction, the brew flashes a violent red before calming to its normal, bubbly purple hue. Through the process, the Wizard continues to stir violently, murmuring a nonsensical language.[line break]
+	Suddenly, the Wizard exclaims, 'All right! I think we have finished.' He retreats briefly to retrieve the Golden Chalice. With cup in hand, he gingerly dips the golden brim into the boiling potion, filling the chalice. Now with an expectantly at it. 'The last step is yours.' He hands the Potion to you.";
+	now Player carries a Potion.
+Instead of drinking a potion: 
+	now the potion is nowhere; 
+	say "The Potion feels slimy in your throat and its best to swallow quickly to avoid elongating the unpleasant bitterness of the brew. At first you feel nothing, but a sudden fatigue seeps deep into your bones. 
+	Large, crazed eyes of the Wizard stare at you through blurred vision. 'Good, it seems like it is working. Not bad for my first Potion of Weakness. I suggest hurrying home. You are going to be too lethargic to do anything else today.'
+	Leaving you to find the exit, the Wizard sneaks away with the empty Golden Chalice in hand, murmuring something about 'payment' before sliding a door closed leading to his private chamber.";
+	now trigger event is 3.
+Brewing ends when trigger event is 3.
+
+[After Effects Scene]
+After Effects is a non-recurring scene.
+After Effects begins when trigger event is 3.
+When After Effects begins:
+	say "Your wings already feel heavy and your muscles crawl under your skin. Best to head straight home." 
+Every turn during After Effects:
+	If player is in the Nest and trigger event is 3:
+		say "Eyes already tired, sleep comes easily now that you are perched back upon your shining bed. During the night, one of your large shoulder scales slides easily from your body, revealing the tender joint between your wing and shoulder. The scale lands with a heavy thud, sliding down in a stream of coins. It is approximately the size of mankind's largest shield and nearly impenetrable.";
+		now trigger event is 4.
+After Effects ends when trigger event is 4.
+When After Effects ends:
+	now the player is asleep.
+
+The Above Town is west of the Above Grass Clearing.
+
+The Destroyed Village is down of the Above Town. “Your powerful claws tore the buildings apart, and your fiery breath incinerated what was left. The remaining villagers remain hidden in whatever buildings remain untouched by your destruction.”
+
+The sky is a backdrop. The sky is in the The Clearing, The Above Meadow, The Above Forest Path, The Above Hut Clearing, The Wizard's Hut, The Above Town and the Destroyed Village.
+
+[Barrier into Village]
+The villagers are in the Above Town. "Below, you can spot the squabbling shapes of the villagers. They've brought with them torches and swords and pitchforks to ward you away from their home. Best to dispose of them."
+	The villagers are fixed in place. Instead of taking villagers, say "Their pitchforks poke angrily at your clawed hand as you attempt to pick them up."
+	The villagers are flammable.
+	Instead of attacking the villagers:
+		say "The villagers now lay in a reeking pile of charred bodies. Their blood pools on the now damp ground, and their weapons lie untouched upon the ground.";
+		now the villagers are nowhere.
+		
+[Entrance to Destroyed Village]
+Instead of going down to the Destroyed Village:
+	if the villagers are in the Above Town:
+		say "You cannot pass unless you want to risk the hassle of a sword in your side.";
+	otherwise:
+		now the player is in the Destroyed Village.
+
+[Inside the Nest]
+The sword is in Nest. The description of the sword is “A sharp blade that was once wielded by a mighty warrior.”
+	Instead of taking the sword, say “ Why would you need a sword, you’re a dragon!”
+The gold is scenery. The gold is in the Nest. 
+The golden chalice is in the Nest. The description of the chalice is "Made of pure gold, the cup is embedded with numerous jewels. Its surface shines in the light almost blindingly."
+	The golden chalice is inflammable.
+The king's robe is in the Nest.
+	The king's robe is flammable.
+
+[Inside the Rotting Chasm Contents]
+The dead body is scenery in the Rotting Chasm. 
+	The dead body is inedible. Instead of eating the dead body, say "That would taste disgusting. Who knows how long that's been sitting there. And the maggots..."
+	The dead body is inflammable. Instead of firebreathing the dead body, say "Setting this thing on fire would likely cause a rank stench to fill your cave. Better judgement says don't do it."
+The pile of dead bodies is scenery in the Rotting Chasm.
+	The pile of dead corpses is inedible. Instead of eating the pile of dead corpses, say "That would taste disgusting. Who knows how long that's been sitting there. And the maggots..."
+	The pile of dead bodies is inflammable. Instead of firebreathing the pile of dead corpses, say "Setting this thing on fire would likely cause a rank stench to fill your cave. Better judgement says don't do it."
+The black pond is a scenery. It is in the Rotting Chasm. The description of the black pond is "Thick like tar, the pond seems to absorb all light. The liquid itself appears dead, never shifting despite its viscous properties."
+	The black pond is inflammable.
+	The black pond is a container.
+	The black pond contains a body of a king. The description of the body of a king is "This one is fresh. Pity he got stuck here. He had a strong heart, although a weak sword arm."
+	The body of a king is fixed in place.
+	The body of a king is inedible.
+	The body of a king is a container.
+	The body of a king is closed. The body of a king is openable. Instead opening the body of a king: say "Ugh, he's still soft. Most of the flesh is rotted and smells terrible. Your claws slice through his skin like a hot knife on melting butter. It's not a pleasant feeling. Inside you spy the Heart of a King, still red in color and oozing slightly."; now the body of a king is open.
+	The body of a king contains a Heart of a King. Instead of taking the heart: say "You gently remove the heart from the chest cavity, the tissues still connected tearing easily at the slightest force."; now the player carries the Heart of a King.
+	The description of the Heart of a King is "The heart is still red in color and oozing slightly."
+
+[Inside the Destroyed Village]
+The Golden Book is in the Destroyed Village. The description of the Golden Book is "'[bold type]The Potion of Weakness[roman type] [line break][line break]
+Only the strongest and the bravest seek to weaken their power. Use due caution when brewing this concoction as the boiling process is very volatile. Gather the following items:[line break]
+A Heart of a King[line break]
+Brew over an open flame in a sturdy Cauldron[line break]
+Consume in a Golden Chalice[line break][line break]
+Enjoy.'"
+	The Golden Book is inflammable.
+The Cauldron is in the Destroyed Village. The description of the Cauldron is “No amount of fire and brimstone can melt this chunk of iron. It looks like the perfect tool to brew the wizard’s concoction.”
+	The Cauldron is inflammable.
+
+[Inside the Meadow]
+The goats are scenery. They are in the Meadow. The description of the goats is "There's a sizeable herd of them gathered here. Most seem to be chewing on something. A couple are running into trees. There's one that is just lying on its back bleeting loudly. Another somehow got stuck in a log. Meanwhile, their other companions are sat in the shade with an oddly content look on their face. Maybe too content..."
+	The goats are flammable. Instead of firebreathing the goats: say "Oh why!? Now they're on fire! They are just hopping from fallen log to fallen log bleeting loudly. Have mercy."
+The damp hollow log is scenery. It is in the Meadow.
+	The hollow log is inflammable.
+	The hollow log is a container.
+	The hollow log is closed. The hollow log is openable.
+	The hollow log contains magic mushrooms. 
+	The description of the magic mushrooms is "Squishy and porous, these particular fungi are purple and orange in color. Not the most appetizing of foods. They seem more poisonous than magical."
+	Instead of eating the magic mushrooms, say "Don't eat them. Really, don't."
+	The magic mushrooms are inflammable.
+
+[Sleep]
+A person is either awake or asleep. A person is usually awake.
+Instead of sleeping: now the player is asleep; say "You go to sleep." 
+Instead of doing something other than waking up, dreaming or sleeping when the player is asleep: 
+	say "You should keep sleeping. You need the rest." 
+Instead of sleeping when the player is asleep: 
+	say "Zzzz." 
+Instead of sleeping when After Effects has not happened: now the player is awake;
+	say "You've had a good night's rest. and you have things to do today."
+Instead of dreaming when the player is asleep:
+	say "Your thoughts are disjointed and nearly impossible to follow. It may be due to that potion... Memories of your time as a wyrmling floats about, mingled with recollections of some of the your greatest victories. You can feel the soft resistance as you sink your claws and teeth into your victims and the small pricks as swords and arrows feebly attempt to pierce your armor. The stark smell of brimstone mingles with the tangy stench of red iron. But eventually, all these memories look like carbon copies of each other. Nothing is exciting and as other dragons fell to the advancement of man's technology, you've found yourself lacking in proper company. How much longer until the end embraces your centuries-old, weary body? There's not much to live for now besides spiting mankind with your existence..."
+[Dream Scene]
+Dream is a non-recurring scene. Dream begins when After Effects ends. Dream ends when the time since Dream began is 3 minutes. 
+
+[End Cast]
+The angry mob is fixed in place. Instead of taking angry mob, say "There are too many villagers. It's hard to seperate one from the group and snatch them in your claws."
+The angry mob is edible. Instead of eating angry mob: say "Like a great titan, you open you wide jaw and snatch people off the ground by their limbs and sometimes their heads. With a quick snap of your teeth, you end you enemies with only scraps left scattered on the ground."; now the angry mob is nowhere.
+The villagers are flammable.
+Instead of attacking the angry mob:
+	say "The villagers had put up a good fight, but now lie bleeding on the ground, dirtying your doorstep.";
+	now the villagers are nowhere.
+The imperial soldiers are fixed in place. Instead of taking imperial soldiers, say "There are too soldiers. It's hard to seperate one from the group and snatch them in your claws."
+The imperial soldiers are edible. Instead of eating the imperial soldiers: say "Like a great titan, you open you wide jaw and snatch people off the ground by their limbs and sometimes their heads. With a quick snap of your teeth, you end you enemies with only scraps left scattered on the ground."; now the imperial soldiers are nowhere.
+The villagers are flammable.
+Instead of attacking the imperial soldiers:
+	say "Despite their polished swords and smelted armor, the soldiers stood no chance against you. Their corpses now add to you ever growing pile.";
+	now the imperial soldiers are nowhere.
+	
+[Finale Scene]
+Finale is a non-recurring scene.
+Finale begins when Dream ends.
+When Finale begins:
+	say "When you awaken, the sudden loss in weight is jarring. You feel reinvigorated and a century younger. That is not what woke you though. A commotion can be heard from the Cave Entrance.";
+	now imperial soldiers are in the Cave Entrance;
+	now angry mob is in the Cave Entrance;
+	now the player is awake.
+Before going north during the Finale: say "It is immediately obvious what the source of the commotion is. Angered by the destruction of their home, the angry mob have massed against you with imperial soldiers as their ally."
+Finale ends when imperial soldiers are nowhere and angry mob is nowhere.
+
+[Game Over]
+Game Over is a non-recurring scene.
+Game Over begins when Finale ends.
+When Game Over begins:
+	say "During your last strike, a stabbing pain lances through your shoulder. With a quick glance, you spy a small human dangling from your shoulder, your fallen scale equipped as a shield. Firmly grasped in a gauntlet covered hand, a sword lies buried in the bare spot revealed from the fallen scale. Upon further inspection, you spot a shimmering liquid of red coating the sword. A sense of dread washes over you as your strength drains from your muscles and you fall, crashing down beside your attackers. With a victorious shout, the humans advance, scratching at you with their swords, pitch forks and torches, and you can do nothing to fend against them.[line break]
+	After hours of beating, the life of a once mighty dragon burns out and the oppression of the terrifying beast is lifted from the exhausted villagers. Now a massive heap of rotted meat blocks the entrance of an emptied cavern and the nearby town flourishes in insurmountable wealth.[line break]
+	[line break]
+	[bold type]-YOU ARE DEAD-[line break]
+	[line break]
+	[roman type]'Is this what you wanted?'";
+	now player is dead.
+
